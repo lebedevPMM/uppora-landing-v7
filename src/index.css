@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #F5F3ED;
+  --color-dark: #0F1419;
+  --color-emerald: #1B4D3E;
+  --color-emerald-hover: #143b2f;
+  --color-gold: #E8B44C;
+  --color-gold-light: #f9e8c3;
+  --color-navy: #0A2540;
+  --color-gray: #9CA3AF;
+  --color-gray-light: #E5E7EB;
+  --color-gray-dark: #4B5563;
+  --color-error: #DC2626;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --tracking-tighter: -0.02em;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-cream);
+  color: var(--color-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease-expo), transform 0.8s var(--ease-expo);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Particles */
+.particle {
+  position: absolute;
+  background: var(--color-gold);
+  border-radius: 50%;
+  opacity: 0;
+  animation: flowToCenter 3s infinite var(--ease-expo);
+}
+@keyframes flowToCenter {
+  0% { transform: scale(0) translate(var(--startX), var(--startY)); opacity: 0; }
+  20% { opacity: 0.6; }
+  80% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+  100% { transform: scale(0.5) translate(0, 0); opacity: 0; }
+}
+
+/* Range slider */
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: var(--color-emerald);
+  cursor: pointer;
+  margin-top: -10px;
+  box-shadow: 0 0 0 4px var(--color-cream), 0 0 0 6px var(--color-emerald);
+  transition: transform 0.2s;
+}
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: var(--color-gray-light);
+  border-radius: 2px;
+}
+input[type=range]:focus {
+  outline: none;
+}
+
+/* Details/Summary */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Dash animation */
+.dash-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 3s linear infinite;
+}
+@keyframes dash {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes slideRight {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
